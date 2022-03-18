@@ -1,0 +1,84 @@
+#include<stdio.h>
+#include<windows.h>
+#include<conio.h>
+#define ROW 9
+#define COL 11
+char map[ROW][COL+1]={
+        {"*#*********"},
+		{"***###*###*"},
+		{"###**#****#"},
+		{"*#**###**#*"},
+		{"***********"},
+        {"#####*##*##"},
+		{"**#*****#*E"},
+		{"***#*###**#"},
+		{"*#*********"},
+};
+
+void print_map()
+{
+	int i;
+	for( i=0;i < ROW;i++)
+	{
+		puts(map[i]);
+	}
+}
+
+void show_cursor(int x,int y)
+{
+	COORD pos;
+	pos.X=x;
+	pos.Y=y;
+	printf("curX=%d,curY=%d\n",x,y);
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
+}
+
+int curX,curY;
+int n;
+char m;
+int main()
+{
+	printf("请按迷宫走出去，向上为w向下为s左边a右边d");
+	printf("开始请按1\n");
+	scanf("%d",&n);
+	if(n==1)
+	{
+	  while(1)
+	  {
+		system("cls");
+		print_map();
+		show_cursor(curX,curY);
+		m=getch();
+			if(m == 'w'){
+				if((curY-1)>=0&&(map[curY-1][curX]=='*'||map[curY-1][curX]=='E')) curY--;}
+		
+		else if(m=='s')
+		{
+			if((curY+1)<ROW&&(map[curY+1][curX]=='*'||map[curY+1][curX]=='E')) curY++;
+		}
+		else if(m=='s')
+		{
+			if((curY+1)<ROW&&(map[curY+1][curX]=='*'||map[curY+1][curX]=='E')) curY++;
+			
+		}
+		else if(m=='a')
+		{
+			if((curX-1)>=0&&(map[curY][curX-1]=='*'||map[curY][curX-1]=='E')) curX--;
+		}
+		else if(m='d')
+		{
+			if((curX+1)<COL&&(map[curY][curX+1]=='*'||map[curY][curX+1]=='E'))curX++;
+		}
+		if(map[curY][curX]=='E')
+		{   
+		    printf("恭喜你，走出了迷宫\t");
+			break;
+		}
+	  }
+	}
+	else if(n!=1)
+	{
+		printf("输入错误,请重新输入\n");
+	}
+	return 0;
+}
