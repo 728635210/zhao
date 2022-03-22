@@ -1,0 +1,29 @@
+#include<stdio.h>
+main(){
+char a[100],word[30];
+int i=0,j,m=0,w=0,count=0,sum=0;
+printf("请输入一句英文\n");
+while((a[i] = getchar()) != '\n'){
+m++;
+i++;
+}
+i=0;
+printf("请输入要查找的单词\n");
+while((word[i] = getchar()) != '\n'){
+w++;
+i++;
+}
+for (i = 0; i < m; i++)
+{   count = 0;
+    if(a[i] == word[0]){
+        for(j=0;j<w;j++){
+            if(a[i+j] == word[j]){
+                count++;
+            }
+        }
+        if(count == w)sum++;
+    }
+}
+printf("你查找的单词个数:%d\n",sum);
+
+}
