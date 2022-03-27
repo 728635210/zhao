@@ -1,0 +1,26 @@
+#include <stdio.h>
+const int maxn=1010;
+struct student{
+	long long id;//准考证号；
+	int examseat;//考试座位号； 
+}seat[maxn];
+int main(){
+	int n,m,testseat,examseat;
+	long long id;
+printf("请输入有多少位考生\n");
+	scanf("%d",&n);
+	for (int i=0;i<n;i++){
+printf("请输入考生的准考证号试机座位和考试座位");
+		scanf("%lld %d %d",&id,&testseat,&examseat);
+		seat[testseat].id=id;
+		seat[testseat].examseat=examseat;
+	}
+printf("请输入要查询几位考生的考试座位\n");
+	scanf("%d",&m);
+	for (int i=0;i<m;i++){
+printf("请输入考生的试机座位\n");
+		scanf("%d",&testseat);
+		printf("%lld %d\n",seat[testseat].id,seat[testseat].examseat);
+	}
+	return 0;
+} 
